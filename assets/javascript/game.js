@@ -26,9 +26,9 @@ var attemptedGuesses = 0;
 var randomIndex = Math.floor(Math.random() * answers.length);
 var randomAnswer = answers[randomIndex].animal;
 var guesses = [];
+var wins = 0;
+var losses = 0;
 
-
-//TODO: Update input and add game loop
 document.addEventListener('keydown', function (event) {
     if (startGame && /^[a-z]$/i.test(event.key)) {
         recordGuess(event.key);
@@ -38,7 +38,6 @@ document.addEventListener('keydown', function (event) {
         setupGame();
     }
 });
-
 
 function resetGame() {
     attemptedGuesses = 0;
@@ -52,6 +51,8 @@ function setupGame() {
     checkIfWin();
     document.getElementById('guesses').innerHTML = 'You have ' + (allowedGuesses - attemptedGuesses) + ' remaining!';
     document.getElementById('attempted-guesses').innerHTML = guesses.join(' ');
+    document.getElementById('wins').innerHTML = 'Wins: ' + wins;
+    document.getElementById('losses').innerHTML = 'Losses: ' + losses;
 }
 
 function checkIfWin() {
@@ -81,11 +82,13 @@ function recordGuess(letter) {
             document.getElementById('guesses').innerHTML = 'You have ' + (allowedGuesses - attemptedGuesses) + ' remaining!';
             if (attemptedGuesses >= allowedGuesses) {
                 document.getElementById('answer').innerHTML = 'You lose<br>The anser was ' + randomAnswer;
+                losses++;
                 setTimeout(resetGame, 2000);
             }
         } else {
             if (checkIfWin()) {
                 document.getElementById('answer').innerHTML = 'You win!';
+                wins++;
                 document.getElementById('image').style.backgroundImage = 'url(' + answers[randomIndex].image + ')';
                 setTimeout(resetGame, 2000);
             }
