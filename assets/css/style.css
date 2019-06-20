@@ -1,0 +1,25 @@
+#image {
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../images/mysteryanimals.jpg); /* find placeholder img */
+}
+
+.container {
+    background-color: white;
+    width: 1300px;
+    max-width: 100%;
+    border: 1px dashed black;
+    margin: 0 auto;
+    text-align: center;
+}
+
+body {
+    background-image: url(../images/rainforest.jpg);
+    background-size: 100%;
+}
+
+h1 {
+    text-align: center;
+}
